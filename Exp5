@@ -1,0 +1,63 @@
+### Query1: Display the total number of employees working in the company
+      SELECT COUNT(*) AS total_employees
+      FROM employee;
+
+### Qyery2: Display the total salary being paid to all employees
+      SELECT SUM(sal) AS total_salary
+      FROM employee;
+
+### Query3: Display the maximum salary from employee table
+      SELECT MAX(sal) AS max_salary
+      FROM employee;
+
+### Query4: Display the minimum salary from employee table
+      SELECT MIN(sal) AS min_salary
+      FROM employee;
+
+### Query5: Display the average salary from employee table
+      SELECT AVG(sal) AS avg_salary
+      FROM employee;
+
+### Query6: Display the maximum salary being paid to CLERK
+      SELECT MAX(sal) AS max_salary
+      FROM employee
+      WHERE job = 'CLERK';
+
+### Query7: Display the maximum salary being paid in dept no 20
+      SELECT MAX(sal) AS max_salary
+      FROM employee
+      WHERE deptno = 20;
+
+### Query8: Display the minimum salary paid to any SALESMAN
+      SELECT MIN(sal) AS min_salary
+      FROM employee
+      WHERE job = 'SALESMAN';
+
+### Query9: Display the average salary drawn by MANAGERS
+      SELECT AVG(sal) AS avg_salary
+      FROM employee
+      WHERE job = 'MANAGER';
+
+### Query10: Display the total salary drawn by ANALYST working in dept no 40
+      SELECT SUM(sal) AS total_salary
+      FROM employee
+      WHERE job = 'ANALYST' AND deptno = 40;
+
+### Query11: Display the names of the employee in UPPERCASE
+      SELECT UPPER(ename) AS emp_name_upper
+      FROM employee;
+
+### Query12: Display the names of the employee in LOWERCASE
+      SELECT LOWER(ename) AS emp_name_lower
+      FROM employee;
+
+### Query13: Display the names of the employee in Proper Case
+      SELECT CONCAT(UPPER(LEFT(ename,1)), LOWER(SUBSTRING(ename,2))) AS proper_name
+      FROM employee;
+
+###Query14: Display the length of your name using appropriate function
+      SELECT LENGTH('Pragya') AS name_length;
+
+### Query15: Display the length of all the employee names
+      SELECT ename, LENGTH(ename) AS name_length
+      FROM employee;
