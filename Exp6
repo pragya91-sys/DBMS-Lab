@@ -1,0 +1,106 @@
+### Query1: Display empno, ename, deptno from employee table. Instead of display department numbers display the related department name (Use decode function).
+
+            SELECT empno, ename,
+            CASE deptno
+            WHEN 10 THEN 'ACCOUNTING'
+            WHEN 20 THEN 'RESEARCH'
+            WHEN 30 THEN 'SALES'
+            WHEN 40 THEN 'OPERATIONS'
+            END AS dept_name
+            FROM employee;
+
+
+
+### Query2: Display your age in days.
+
+            SELECT DATEDIFF(CURDATE(), '2006-01-01') AS age_in_days;
+
+
+
+### Query3: Display your age in months.
+
+            SELECT TIMESTAMPDIFF(MONTH, '2006-01-01', CURDATE()) AS age_in_months;
+
+
+
+### Query4: ⁠Display the current date as 15th August Friday Nineteen Ninety-Seven.
+
+            SELECT DATE_FORMAT(CURDATE(), '%D %M %W %Y');
+
+
+
+### Query5: Display the following output for each row from employee table.
+
+            SELECT CONCAT(ename,' has joined the company on ', 
+            DATE_FORMAT(hiredate,'%W %D %M %Y')) AS info
+            FROM employee;
+
+
+
+### Query6: ⁠Scott has joined the company on Wednesday 13th August Nineteen Ninety
+
+            SELECT CONCAT(ename,' has joined the company on ',
+            DATE_FORMAT(hiredate,'%W %D %M %Y')) AS info
+            FROM employee
+            WHERE ename='SCOTT';
+
+
+
+### Query7: Find date for nearest Saturday after current date
+
+            SELECT DATE_ADD(CURDATE(), INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY);
+
+
+
+### Query8: Display current time
+
+            SELECT CURTIME();
+
+
+
+### Query9: Display date three months before current date
+
+            SELECT DATE_SUB(CURDATE(), INTERVAL 3 MONTH);
+
+
+
+### Query10: Employees who joined in December
+
+            SELECT * FROM employee
+            WHERE MONTH(hiredate) = 12;
+
+
+
+### Query11: Employees whose first 2 characters of hiredate = last 2 of salary
+
+            SELECT * FROM employee
+            WHERE LEFT(hiredate,2) = RIGHT(sal,2);
+
+
+
+### Query12: Employees whose 10% of salary = year of joining
+
+            SELECT * FROM employee
+            WHERE sal * 0.10 = YEAR(hiredate);
+
+
+
+### Query13: Employees who joined before 15th of month
+
+            SELECT * FROM employee
+            WHERE DAY(hiredate) < 15;
+
+
+
+### Query14: Employees who joined before 15th of current month
+
+            SELECT * FROM employee
+            WHERE hiredate < DATE_FORMAT(CURDATE(),'%Y-%m-15');
+
+
+
+
+### Query15: Employees whose joining DATE is available in deptno
+
+            SELECT * FROM employee
+            WHERE DAY(hiredate) = deptno;
