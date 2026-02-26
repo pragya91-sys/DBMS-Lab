@@ -1,0 +1,59 @@
+### Query1: Employees who joined before 30-Jun-1980 or after 31-Dec-1981
+            SELECT ename, hiredate
+            FROM employee
+            WHERE hiredate < '1980-06-30'
+            OR hiredate > '1981-12-31';
+
+### Query2: Names whose second alphabet is ‘A’
+            SELECT ename
+            FROM employee
+            WHERE ename LIKE '_A%';
+
+### Query3: Names whose name is exactly five characters long
+            SELECT ename
+            FROM employee
+            WHERE LENGTH(ename) = 5;
+
+### Query4: Names whose second alphabet is ‘A’ in their names
+            SELECT ename
+            FROM employee
+            WHERE ename LIKE '_A%';
+
+### Query5: Employees not working as salesman, clerk or analyst
+            SELECT ename, job
+            FROM employee
+            WHERE job NOT IN ('SALESMAN', 'CLERK', 'ANALYST');
+
+### Query6: Employee name with annual salary (sal × 12) — highest salary first
+            SELECT ename, sal*12 AS annual_salary
+            FROM employee
+            ORDER BY sal DESC;
+
+### Query7: Name, sal, hra, pf, da, total salary (ordered by total salary)
+*HRA = 15% of sal
+*PF = 10% of sal
+*DA = 5% of sal
+*Total = sal + hra + da − pf
+            SELECT ename,
+            sal,
+            sal*0.15 AS hra,
+            sal*0.10 AS pf,
+            sal*0.05 AS da,
+            (sal + sal*0.15 + sal*0.05 - sal*0.10) AS totalsal
+            FROM employee
+            ORDER BY totalsal;
+
+### Query8: Update salary by 10% for employees not eligible for commission
+            UPDATE employee
+            SET sal = sal + sal*0.10
+            WHERE comm IS NULL;
+
+### Query9: Employees whose salary is more than 3000 after giving 20% increment
+            SELECT ename, sal*1.20 AS incremented_salary
+            FROM employee
+            WHERE sal*1.20 > 3000;
+
+### Query10: Employees whose salary contains at least 3 digits
+            SELECT ename, sal
+            FROM employee
+            WHERE sal >= 100;
